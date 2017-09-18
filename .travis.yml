@@ -13,12 +13,10 @@ addons:
       - python
       - perl
       - make
-      - find
       - grep
-      - diff
+      - diffutils
       - unzip
       - gawk
-      - getopt
       - subversion
       - libz-dev
 
