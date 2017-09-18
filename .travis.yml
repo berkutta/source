@@ -1,0 +1,39 @@
+sudo: false
+language: bash
+os:
+  - linux
+
+addons:
+  apt:
+    packages:
+      - gcc
+      - binutils
+      - bzip2 
+      - flex
+      - python
+      - perl
+      - make
+      - find
+      - grep
+      - diff
+      - unzip
+      - gawk
+      - getopt
+      - subversion
+      - libz-dev
+
+before_install:
+  # Save path to the git respository
+  - PROJECT_PATH=$(pwd)
+
+install:
+  - ./scripts/feeds update -a
+  - ./scripts/feeds install -a
+
+script:
+  # Go back to the git repository
+  - cd $PROJECT_PATH
+  # Update configuration so that kconfig doesn't start interactive mode
+  - make defconfig
+  # Build project from the git repository
+  - make -j2
